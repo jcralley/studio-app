@@ -1,0 +1,54 @@
+{
+  "name": "lit-typescript-webpack-project",
+  "version": "1.0.0",
+  "description": "Lit web components project with TypeScript, Webpack, and Karma testing",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "build:dev": "webpack --mode=development",
+    "dev": "webpack serve --mode=development",
+    "test": "karma start --single-run",
+    "test:debug": "karma start",
+    "test:chromedebug": "karma start --browsers=Chrome",
+    "test:chrome": "karma start --browsers=Chrome --single-run",
+    "clean": "rimraf dist",
+    "serve:prod": "http-server dist -p 8080",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "lit",
+    "web-components",
+    "typescript",
+    "webpack",
+    "karma",
+    "qunit"
+  ],
+  "author": "claude",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/qunit": "^2.19.6",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "css-loader": "^6.8.1",
+    "eslint": "^8.45.0",
+    "html-webpack-plugin": "^5.5.3",
+    "http-server": "^14.1.1",
+    "karma": "^6.4.2",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-firefox-launcher": "^2.1.2",
+    "karma-qunit": "^4.1.2",
+    "karma-safari-launcher": "^1.0.0",
+    "karma-webpack": "^5.0.0",
+    "qunit": "^2.19.4",
+    "rimraf": "^5.0.1",
+    "style-loader": "^3.3.3",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "lit": "^3.0.0"
+  }
+}
