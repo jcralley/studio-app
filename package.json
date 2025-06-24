@@ -11,8 +11,8 @@
     "test:debug": "karma start",
     "test:chromedebug": "karma start --browsers=Chrome",
     "test:chrome": "karma start --browsers=Chrome --single-run",
-    "clean": "rimraf dist",
-    "serve:prod": "http-server dist -p 8080",
+    "clean": "rimraf dist dist-test",
+    "serve:prod": "npm run build && http-server dist -p 8080",
     "type-check": "tsc --noEmit"
   },
   "keywords": [
