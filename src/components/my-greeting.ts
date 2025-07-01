@@ -1,8 +1,12 @@
-import { LitElement, html, css } from 'lit';
+import { html, css } from 'lit';
+import { MobxLitElement } from '@adobe/lit-mobx';
 import { customElement, property } from 'lit/decorators.js';
+import { consume } from '@lit/context';
+import { studioAppContext } from '../studio-app-context';
+import { StudioAppProxy } from '../proxies/studio-app-proxy';
 
 @customElement('my-greeting')
-export class MyGreeting extends LitElement {
+export class MyGreeting extends MobxLitElement {
   static styles = css`
     :host {
       display: block;
@@ -42,6 +46,9 @@ export class MyGreeting extends LitElement {
     }
   `;
 
+  @consume({ context: studioAppContext })
+  studioApp: StudioAppProxy | undefined;
+
   @property({ type: String })
   name = 'World';
 
@@ -50,7 +57,9 @@ export class MyGreeting extends LitElement {
 
   private _updateName(e: Event): void {
     const input = e.target as HTMLInputElement;
-    this.name = input.value;
+    if (this.studioApp) {
+      this.studioApp.changeOwner(input.value);
+    }
   }
 
   private _getTimeBasedGreeting(): String {
@@ -62,16 +71,17 @@ export class MyGreeting extends LitElement {
 
   render() {
     const timeGreeting = this._getTimeBasedGreeting();
+    const owner = this.studioApp ? this.studioApp.owner : this.name;
 
     return html`
       <div class="greeting">
         <h3>Greeting Component</h3>
-        <div class="message">${this.greeting}, ${this.name}</div>
+        <div class="message">${this.greeting}, ${owner}</div>
         <div class="time">${timeGreeting}</div>
         <div>
           <input
             type="text"
-            .value=${this.name}
+            .value=${this.studioApp ? this.studioApp.owner : this.name}
             @input=${this._updateName}
             placeholder="Enter your name"
           />

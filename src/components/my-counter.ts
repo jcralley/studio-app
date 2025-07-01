@@ -1,8 +1,15 @@
-import { LitElement, html, css } from 'lit';
+import { html, css } from 'lit';
+import { consume } from '@lit/context';
+import { MobxLitElement } from '@adobe/lit-mobx';
 import { property, customElement } from 'lit/decorators.js';
+import { studioAppContext } from '../studio-app-context';
+import { StudioAppProxy } from '../proxies/studio-app-proxy';
 
 @customElement('my-counter')
-export class MyCounter extends LitElement {
+export class MyCounter extends MobxLitElement {
+  @consume({ context: studioAppContext })
+  studioApp: StudioAppProxy | undefined;
+
   @property({ type: Number })
   count = 0;
 
@@ -95,6 +102,7 @@ export class MyCounter extends LitElement {
 
   render() {
     return html`
+      <h2>${this.studioApp ? this.studioApp.counterTitle : 'no title'}</h2>
       <div class="count-display">Count: ${this.count}</div>
       <div class="buttons">
         <button class="decrement" @click=${this._decrement}>-</button>

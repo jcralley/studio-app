@@ -1,4 +1,5 @@
 // Import and register all components
+import './studio-app.ts';
 import './components/my-counter';
 import './components/my-button';
 import './components/my-card';
