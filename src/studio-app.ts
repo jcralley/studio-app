@@ -64,7 +64,7 @@ export class StudioApp extends LitElement implements IStudioApp {
 
   closeDocument(document: StudioDocument) {
     console.log(`Closing Document: ${document.name}`);
-    this.proxy.removeOpenDocument(document.proxy as StudioDocumentProxy);
+    this.proxy.removeOpenDocument((document.proxy as StudioDocumentProxy).id);
     let nextDocument: StudioDocument = this.startPage;
     if (this.proxy.openDocuments.length > 0) {
       nextDocument = this.proxy.openDocuments[0].document as StudioDocument;

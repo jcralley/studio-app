@@ -24,9 +24,9 @@ export class StudioAppProxy {
 
   removeOpenDocument(docOrId: string | StudioDocumentProxy) {
     if (typeof docOrId === 'string') {
-      this.openDocuments = this.openDocuments.filter((doc) => doc.id === docOrId);
+      this.openDocuments = this.openDocuments.filter((doc) => doc.id !== docOrId);
     } else if (docOrId instanceof StudioDocumentProxy) {
-      this.openDocuments = this.openDocuments.filter((doc) => doc === docOrId);
+      this.openDocuments = this.openDocuments.filter((doc) => doc !== docOrId);
     }
   }
 
