@@ -1,6 +1,5 @@
 import { StudioAppProxy } from '../StudioAppProxy';
-import { StudioDocument } from './studio-document';
-import { StudioDocumentType } from './StudioDocumentType';
+import { StudioDocument, StudioDocumentType } from './studio-document';
 import './simulink/simulink-block-diagram';
 import { getFileExtension } from '../utils/path';
 
@@ -35,7 +34,7 @@ export class StudioDocumentFactory {
       const type = this.extensionMap.get(extension);
       if (type) {
         const doc = document.createElement(type.component) as StudioDocument;
-        doc.name = documentPath;
+        doc.setAttribute('name', documentPath);
         return doc;
       }
     }

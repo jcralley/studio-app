@@ -1,5 +1,6 @@
 import { html, css } from 'lit';
 import { StudioDocument } from './studio-document';
+import type { MaybeStudioDocumentProxy } from './studio-document';
 import { customElement, property } from 'lit/decorators.js';
 
 @customElement('studio-app-start')
@@ -17,7 +18,8 @@ export class StudioAppStart extends StudioDocument {
     `;
 
   constructor() {
-    super('StartPage');
+    super();
+    this.setAttribute('name', 'StartPage');
   }
 
   @property({ type: String, attribute: false })
@@ -37,6 +39,10 @@ export class StudioAppStart extends StudioDocument {
     if (e.key === 'Enter') {
       this.openDocument();
     }
+  }
+
+  _createProxy(): MaybeStudioDocumentProxy {
+    return undefined;
   }
 
   render() {
