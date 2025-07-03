@@ -1,4 +1,4 @@
 import { createContext } from '@lit/context';
-import type { StudioAppProxy } from './proxies/studio-app-proxy';
-export type { StudioAppProxy } from './proxies/studio-app-proxy';
+import type { StudioAppProxy } from './StudioAppProxy';
+export type { StudioAppProxy } from './StudioAppProxy';
 export const studioAppContext = createContext<StudioAppProxy>(Symbol('studio-app'));
